@@ -45,26 +45,48 @@ const teamData = [
 
 // Replace the slideshow functionality with this carousel code
 function initCarousel() {
-    const images = Array.from({length: 16}, (_, i) => 
-        `assets/events/${i + 1}.jpg`
-    );
+    const images = [
+        { src: 'assets/events/5.jpg', title: 'karthigai Deepam' },
+        { src: 'assets/events/1.jpg', title: 'Onam Fest' },
+        { src: 'assets/events/2.jpg', title: 'Aadukalam 24' },
+        { src: 'assets/events/3.jpg', title: 'Sports Day Highlights' },
+        { src: 'assets/events/6.jpg', title: 'Karthigai Deepam' },
+        { src: 'assets/events/7.jpeg', title: 'Onam 24' },
+        { src: 'assets/events/8.jpg', title: 'Pongal Celebration' },
+        { src: 'assets/events/9.jpg', title: 'Onam 23' },
+        { src: 'assets/events/10.jpg', title: 'Diwali 2024' },
+        { src: 'assets/events/11.jpg', title: 'OpenMic Event' },
+        { src: 'assets/events/4.jpg', title: 'Karthigai Deepam' },
+        { src: 'assets/events/12.jpg', title: 'Texus DJ Night' },
+        { src: 'assets/events/13.jpg', title: 'Diwali 2023' },
+        { src: 'assets/events/14.jpg', title: 'Teachers Day' },
+        { src: 'assets/events/15.jpg', title: 'Navaratri Celebration' },
+        { src: 'assets/events/16.jpg', title: 'Aadukalam 24' },
+
+        // Add more images and titles as needed
+    ];
     
     const carousel = document.querySelector('.carousel-inner');
     const indicators = document.querySelector('.carousel-indicators');
     let currentSlide = 0;
     
     // Create carousel items and indicators
-    images.forEach((src, index) => {
+    images.forEach((item, index) => {
         // Create carousel item
-        const item = document.createElement('div');
-        item.className = `carousel-item ${index === 0 ? 'active' : ''}`;
+        const carouselItem = document.createElement('div');
+        carouselItem.className = `carousel-item ${index === 0 ? 'active' : ''}`;
         
         const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Event ${index + 1}`;
+        img.src = item.src;
+        img.alt = item.title;
         
-        item.appendChild(img);
-        carousel.appendChild(item);
+        const overlay = document.createElement('div');
+        overlay.className = 'carousel-title-overlay';
+        overlay.innerText = item.title;
+        
+        carouselItem.appendChild(img);
+        carouselItem.appendChild(overlay);
+        carousel.appendChild(carouselItem);
         
         // Create indicator
         const indicator = document.createElement('div');
@@ -105,6 +127,7 @@ function initCarousel() {
     // Auto advance slides
     setInterval(nextSlide, 3000);
 }
+
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
